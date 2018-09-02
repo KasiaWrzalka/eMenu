@@ -2,10 +2,12 @@
 
 {% block content %}
             {% for card in cards %}
-                <div class="post">
-                    <p>published: {{ card.created_date }}</p>
-                    <h1><a href="">{{ card.name }}</a></h1>
-                    <p>{{ card.description|linebreaksbr }}</p>
-                </div>
+                {% if card.number_of_items > 0 %}
+                    <div class="post">
+                        <p>published: {{ card.created_date }}</p>
+                        <h1><a href="/{{ card.id }}/items/">{{ card.name }} {{ card.id }}</a></h1>
+                        <p>{% if card.description is not Null %} {{ card.description|linebreaksbr }} {% endif %}</p>
+                    </div>
+                {% endif %}
             {% endfor %}
 {% endblock %}

@@ -19,11 +19,13 @@
             {% block content %}
             {% endblock %}
 
-            <br>
-            <br> <br> <br>
-            <br>
+                {% if request.get_full_path != "/" %}
+
+                <br> <br> <br> <br> <br>
+
                 <h3>Wróć do:</h3>
             <h3><a href="/">Strona startowa</a></h3>
+                {% endif %}
             </div>
         </div>
     </div>
