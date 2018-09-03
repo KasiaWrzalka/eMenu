@@ -2,17 +2,29 @@
 
 {% block content %}
             {% for card in cards %}
-                {% if card.number_of_items > 0 %}
                     <div class="post">
                         <div class="date">
-                            <p>published: {{ card.created_date }} {% if card.updated is not Null %}; updated: {{ card.updated_date }} {% endif %}</p>
+                            <p>published: {{ card.created_date|date:'Y-m-d H:i' }} {% if card.updated is not Null %}; updated: {{ card.updated_date|date:'Y-m-d H:i' }} {% endif %}</p>
                         </div>
                         <h1><a href="/{{ card.id }}/items/">{{ card.name }}</a></h1>
                         <p>{% if card.description is not Null %} {{ card.description|linebreaksbr }} {% endif %}</p>
                         <p>Ilość dań: {{ card.number_of_items }}</p>
                     </div>
-                {% endif %}
             {% endfor %}
-<br> <br> <br>
+
+        <h3>
+        {% if cards.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ cards.previous_page_number }}">previous</a>
+        {% endif %}
+
+        Page {{ cards.number }} of {{ cards.paginator.num_pages }}.
+
+        {% if cards.has_next %}
+            <a href="?page={{ cards.next_page_number }}">next</a>
+            <a href="?page={{ cards.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+        </h3>
+
 <h3>Sortowanie po: <a href="/id/card_list/">id</a>, <a href="/name/card_list/">nazwa</a>, <a href="/countR/card_list/">liczba dań rosnąco</a>, <a href="/countM/card_list/">liczba dań malejąco</a></h3>
 {% endblock %}
