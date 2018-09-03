@@ -4,10 +4,15 @@
             {% for card in cards %}
                 {% if card.number_of_items > 0 %}
                     <div class="post">
-                        <p>published: {{ card.created_date }}</p>
-                        <h1><a href="/{{ card.id }}/items/">{{ card.name }} {{ card.id }}</a></h1>
+                        <div class="date">
+                            <p>published: {{ card.created_date }} {% if card.updated is not Null %}; updated: {{ card.updated_date }} {% endif %}</p>
+                        </div>
+                        <h1><a href="/{{ card.id }}/items/">{{ card.name }}</a></h1>
                         <p>{% if card.description is not Null %} {{ card.description|linebreaksbr }} {% endif %}</p>
+                        <p>Ilość dań: {{ card.number_of_items }}</p>
                     </div>
                 {% endif %}
             {% endfor %}
+<br> <br> <br>
+<h3>Sortowanie po: <a href="/id/card_list/">id</a>, <a href="/name/card_list/">nazwa</a>, <a href="/countR/card_list/">liczba dań rosnąco</a>, <a href="/countM/card_list/">liczba dań malejąco</a></h3>
 {% endblock %}
