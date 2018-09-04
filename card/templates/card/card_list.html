@@ -2,6 +2,16 @@
 
 {% block content %}
         <h1>Lista kart:</h1>
+        <div>
+        <h3>Zmień sortowanie:</h3>
+            <ul class="sorting-list">
+                <li class="js-sort active" data-sort="id">Id</li>
+                <li class="js-sort" data-sort="name">Nazwa</li>
+                <li class="js-sort" data-sort="countM">Liczba dań malejąco</li>
+                <li class="js-sort" data-sort="countR">Liczba dań rosnąco</li>
+            </ul>
+        </div>
+
             <div class="card-list-item  card-list-item-template js-card-list-item-template">
                 <div class="date js-date"></div>
                 <a class="name js-link" href="/items/"><h3 class="name js-name"></h3></a>
@@ -21,17 +31,6 @@
                 {% endfor %}
             </ul>
         </div>
-
-        <div>
-        <h3>Zmień sortowanie:</h3>
-            <ul class="sorting-list">
-                <li class="js-sort active" data-sort="id">Id</li>
-                <li class="js-sort" data-sort="name">Nazwa</li>
-                <li class="js-sort" data-sort="countM">Liczba dań malejąco</li>
-                <li class="js-sort" data-sort="countR">Liczba dań rosnąco</li>
-            </ul>
-        </div>
-
 
 
 {% endblock %}

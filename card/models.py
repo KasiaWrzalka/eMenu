@@ -11,10 +11,6 @@ class Card(models.Model):
     updated_date = models.DateTimeField(
             blank=True, null=True)
 
-    def create(self):
-        self.created_date = timezone.now()
-        self.save()
-
     def __str__(self):
         return self.name
 
@@ -31,7 +27,7 @@ class CardItem(models.Model):
     card = models.ManyToManyField(Card)
     name = models.CharField(max_length=48, help_text='Name of the item on the menu.')
     description = models.CharField(max_length=128, null=True, blank=True)
-    price = models.IntegerField()
+    price = models.DecimalField(max_digits=6, decimal_places=2)
     preparation_time = models.IntegerField(help_text='Time in minutes.')
     classification = models.CharField(max_length=10, choices=CLASSIFICATION_CHOICES, default=0,
                                       verbose_name='classification',
@@ -40,10 +36,6 @@ class CardItem(models.Model):
             default=timezone.now)
     updated_date = models.DateTimeField(
             blank=True, null=True)
-
-    def create(self):
-        self.created_date = timezone.now()
-        self.save()
 
     def __str__(self):
         return self.name
