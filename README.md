@@ -9,8 +9,8 @@ Projekt składa się z 3 widoków:
 ##Użyte technologie:
 * Python 3.6
 * Django 2.1
-* PostgreSQL 9.5.14
-* JavaScript
+* PostgreSQL 9.6.10
+* JavaScript ES6
 * Django Rest Framework 3.8.2
 ## Instalacja projektu
 Zalecam posiadać na komputerze takie same wersje użytych technologi. <br />
