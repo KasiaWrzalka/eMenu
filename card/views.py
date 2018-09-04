@@ -25,12 +25,21 @@ def CardItems(request, card_id):
     return render(request, 'card/card_items.html', {'items': items, 'card': card})
 
 def getCards(request):
-    cards_list = [i for i in Card.objects.filter(created_date__lte=timezone.now()).order_by('id')
-                  if i.carditem_set.all().count() > 0]
-
-    paginator = Paginator(cards_list, 2)
-
+    sort = request.GET.get('sort')
     page = request.GET.get('page')
+    if sort == 'name':
+        cards = Card.objects.all().order_by('name')
+    elif sort == 'countR':
+        cards = sorted(Card.objects.all(), key=lambda i: i.carditem_set.all().count())
+    elif sort == 'countM':
+        cards = sorted(Card.objects.all(), key=lambda i: i.carditem_set.all().count())[::-1]
+    else:
+        cards = Card.objects.all().order_by('id')
+
+    cards = [i for i in cards if i.carditem_set.all().count() > 0]
+
+    paginator = Paginator(cards, 2)
+
     cards = paginator.get_page(page)
 
     serializer = CardSerializer(cards, many=True)
