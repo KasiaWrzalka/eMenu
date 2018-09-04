@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from rest_framework import serializers
 
 
 class Card(models.Model):
@@ -46,3 +47,8 @@ class CardItem(models.Model):
 
     def __str__(self):
         return self.name
+
+class CardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Card
+        fields = ('id', 'name', 'description', 'created_date', 'updated_date', 'number_of_items')

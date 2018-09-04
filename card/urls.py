@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('<slug:sort>/card_list/', views.CardList, name='card_list'),
-    path('<int:card_id>/items/', views.CardItems, name='card_items'),
+    path('get_cards/', views.getCards, name='get_cards'),
+    path('card_list/', views.CardList, name='card_list'),
+    path('items/<int:card_id>', views.CardItems, name='card_items'),
 ]

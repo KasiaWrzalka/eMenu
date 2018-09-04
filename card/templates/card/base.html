@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/card.css' %}">
+    <link rel="stylesheet" href="{% static 'css/card.css' %}">
 </head>
 <body>
     <div class="page-header">
@@ -20,15 +21,12 @@
             {% endblock %}
 
                 {% if request.get_full_path != "/" %}
-
-                <br> <br>
-
-                <h3>Wróć do:</h3>
-            <h3><a href="/">Strona startowa</a></h3>
+                <h3><a href="/">Wróć do strony startowej.</a></h3>
                 {% endif %}
+                <br>
             </div>
         </div>
     </div>
-
+    <script src="{% static 'js/card.js' %}"></script>
 </body>
 </html>

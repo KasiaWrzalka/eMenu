@@ -1,30 +1,37 @@
 {% extends 'card/base.html' %}
 
 {% block content %}
-            {% for card in cards %}
-                    <div class="post">
-                        <div class="date">
-                            <p>published: {{ card.created_date|date:'Y-m-d H:i' }} {% if card.updated is not Null %}; updated: {{ card.updated_date|date:'Y-m-d H:i' }} {% endif %}</p>
-                        </div>
-                        <h1><a href="/{{ card.id }}/items/">{{ card.name }}</a></h1>
-                        <p>{% if card.description is not Null %} {{ card.description|linebreaksbr }} {% endif %}</p>
-                        <p>Ilość dań: {{ card.number_of_items }}</p>
-                    </div>
-            {% endfor %}
+        <h1>Lista kart:</h1>
+            <div class="card-list-item  card-list-item-template js-card-list-item-template">
+                <div class="date js-date"></div>
+                <a class="name js-link" href="/items/"><h3 class="name js-name"></h3></a>
+                <div>Opis: <p class="js-description"></p></div>
+                <div>Data publikacji: <p class="js-created_date"></p></div>
+                <div>Data  aktualizacji: <p class="js-updated_date"></p></div>
+                <div>Ilość dań: <p class="js-number_of_items"></p></div>
+            </div>
+            <div class="card-list js-card-list">
+            </div>
 
-        <h3>
-        {% if cards.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ cards.previous_page_number }}">previous</a>
-        {% endif %}
+        <div>
+            <h3>Wybierz stronę:</h3>
+            <ul class="page-list">
+                {% for i in pages %}
+                    <li class="js-page{% if i == 1%} active{% endif %}" data-page="{{ i }}">{{ i }}</li>
+                {% endfor %}
+            </ul>
+        </div>
 
-        Page {{ cards.number }} of {{ cards.paginator.num_pages }}.
+        <div>
+        <h3>Zmień sortowanie:</h3>
+            <ul class="sorting-list">
+                <li class="js-sort active" data-sort="id">Id</li>
+                <li class="js-sort" data-sort="name">Nazwa</li>
+                <li class="js-sort" data-sort="countM">Liczba dań malejąco</li>
+                <li class="js-sort" data-sort="countR">Liczba dań rosnąco</li>
+            </ul>
+        </div>
 
-        {% if cards.has_next %}
-            <a href="?page={{ cards.next_page_number }}">next</a>
-            <a href="?page={{ cards.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-        </h3>
 
-<h3>Sortowanie po: <a href="/id/card_list/">id</a>, <a href="/name/card_list/">nazwa</a>, <a href="/countR/card_list/">liczba dań rosnąco</a>, <a href="/countM/card_list/">liczba dań malejąco</a></h3>
+
 {% endblock %}

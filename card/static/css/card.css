@@ -45,3 +45,31 @@ h1, h2, h3, h4 {
 .post h1 a, .post h1 a:visited {
     color: #000000;
 }
+
+.card-list-item-template {
+    display: none;
+}
+
+.sorting-list li{
+    display: inline-block;
+    border: 1px solid black;
+    cursor: pointer;
+    margin: 10px;
+    padding: 10px;
+}
+
+.sorting-list li.active, .sorting-list li:hover{
+    background-color: #ff9400;
+}
+
+.page-list li{
+    display: inline-block;
+    border: 1px solid black;
+    cursor: pointer;
+    margin: 10px;
+    padding: 10px;
+}
+
+.page-list li.active, .page-list li:hover{
+    background-color: #ff9400;
+}
